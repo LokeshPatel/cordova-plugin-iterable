@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "name": "cordova-plugin-iterable",
+  "cordova_name": "cordova-plugin-iterable",
+  "description": "cordova plugin for Iterable push and Inapp",
+  "author": "Lokesh",
+  "license": "MIT",
+  "cordova": {
+    "id": "cordova-plugin-iterable",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "plugins": {
+      "cordova-custom-config": {},
+      "cordova-plugin-whitelist": {}
+    }
+  }
+}

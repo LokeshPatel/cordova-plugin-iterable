@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-iterable" version="0.0.1"
+xmlns="http://apache.org/cordova/ns/plugins/1.0"
+xmlns:android="http://schemas.android.com/apk/res/android">
+	<name>Cordova Plugin For Iterable</name>
+	<license>MIT</license>
+	<engines>
+		<engine name="cordova" version=">=3.2.0" />
+	</engines>
+
+	<js-module name="IterablePlugin" src="www/iterable.js">
+		<clobbers target="iterable" />
+	</js-module>
+	<platform name="android">
+		<config-file parent="/*" target="res/xml/config.xml">
+			<feature name="IterablePlugin">
+				<param name="android-package" value="org.apache.cordova.iterable.IterablePlugin" />
+				<param name="onload" value="true" />
+			</feature>
+		</config-file>
+     <source-file src="src/android/IterablePlugin.java" target-dir="src/org/apache/cordova/iterable" />
+     <framework src="src/android/iterableapi" custom="true" />
+ </platform>
+	<platform name="ios">
+		<config-file parent="/*" target="config.xml">
+			<feature name="IterablePlugin">
+				<param name="ios-package" value="IterablePlugin" />
+				<param name="onload" value="true" />
+			</feature>
+		</config-file>
+
+		<header-file src="src/ios/AppDelegate+IterablePlugin.h" />
+		<source-file src="src/ios/AppDelegate+IterablePlugin.m" />
+		<header-file src="src/ios/IterablePlugin.h" />
+		<source-file src="src/ios/IterablePlugin.m" />
+
+		<header-file src="src/ios/iterableiOSSDK/CommerceItem.h" />
+		<source-file src="src/ios/iterableiOSSDK/CommerceItem.m" />
+		<header-file src="src/ios/iterableiOSSDK/ITBNotificationServiceExtension.h" />
+		<source-file src="src/ios/iterableiOSSDK/ITBNotificationServiceExtension.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableAction.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableAction.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableActionContext.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableActionContext.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableActionRunner.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableActionRunner.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableAPI.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableAPI.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableAPI+Deprecated.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableAPI+Deprecated.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableAPI+Internal.h" />
+		<header-file src="src/ios/iterableiOSSDK/IterableAppIntegration.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableAppIntegration.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableAppIntegration+Private.h" />
+		<header-file src="src/ios/iterableiOSSDK/IterableAttributionInfo.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableAttributionInfo.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableConfig.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableConfig.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableConstants.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableConstants.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableDeeplinkManager.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableDeeplinkManager.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableInAppHTMLViewController.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableInAppHTMLViewController.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableInAppManager.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableInAppManager.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableLogging.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableLogging.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableNotificationMetadata.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableNotificationMetadata.m" />
+		<header-file src="src/ios/iterableiOSSDK/IterableUtil.h" />
+		<source-file src="src/ios/iterableiOSSDK/IterableUtil.m" />
+		<header-file src="src/ios/iterableiOSSDK/NSData+Conversion.h" />
+		<source-file src="src/ios/iterableiOSSDK/NSData+Conversion.m" />
+	</platform>
+</plugin>
