@@ -45,9 +45,9 @@ public class IterablePlugin extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("deviceRegister")) {
-            this.deviceRegister(callbackContext, args.getString(0), args.getString(1));
-            return true;
+        if (action.equals("deviceTokenIDRegister")) {
+             this.deviceTokenIDRegister(callbackContext, args.getString(0));
+             return true;
         }else if (action.equals("loadInAppMessage")) {
             this.loadInAppMessage(callbackContext);
             return true;
@@ -68,10 +68,9 @@ public class IterablePlugin extends CordovaPlugin {
             e.printStackTrace();
         }
     }
-    private void deviceRegister(final CallbackContext callbackContext,final String setEmail, final String setUserId) {
+
+    private void deviceTokenIDRegister(final CallbackContext callbackContext,final String setEmail) {
          IterableApi.getInstance().setEmail(setEmail);
-         if(setUserId.length() > 0)
-            IterableApi.getInstance().setUserId(setUserId);
          IterableApi.getInstance().registerForPush();
     }
 
