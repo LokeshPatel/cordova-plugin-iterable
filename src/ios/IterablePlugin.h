@@ -5,7 +5,6 @@
 
 + (IterablePlugin *) iterablePlugin;
 - (void)Init:(CDVInvokedUrlCommand *)command;
-- (void)deviceRegister:(CDVInvokedUrlCommand *)command;
 - (void)loadInAppMessage:(CDVInvokedUrlCommand *)command;
-
+- (void)deviceTokenIDRegister:(CDVInvokedUrlCommand *)command;
 @end
