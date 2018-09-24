@@ -23,24 +23,31 @@ static IterablePlugin *iterablePlugin;
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
-
-- (void)deviceRegister:(CDVInvokedUrlCommand *)command {
+- (void)deviceTokenIDRegister:(CDVInvokedUrlCommand *)command {
+    
     NSString* setEmail = [command.arguments objectAtIndex:0];
     NSString* setUserId = [command.arguments objectAtIndex:1];
-    
-    CDVPluginResult *pluginResult;
-    
-    [[IterableAPI sharedInstance] setEmail:setEmail];
-     if(setUserId.length > 0){
-       [[IterableAPI sharedInstance] setUserId:setUserId];
-    }
-    
+   
+     [[IterableAPI sharedInstance] setUserId:setUserId];
+     [[IterableAPI sharedInstance] setEmail:setEmail];
+  
     NSData *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"iterableDeviceToken"];
-    [[IterableAPI sharedInstance] registerToken:deviceToken];
-    
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}
+    if(deviceToken != nil){
+        [[IterableAPI sharedInstance] registerToken:deviceToken onSuccess:^(NSDictionary * _Nonnull data) {
+              NSLog(@"registerToken request success response %@", data);
+             CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        } onFailure:^(NSString * _Nonnull reason, NSData * _Nullable data) {
+              NSLog(@"registerToken request fail response %@", reason);
+            CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"device token not found"];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        }];
+    }else{
+        CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"device token not found"];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    }
+  }
+
 
 -(void)loadInAppMessage:(CDVInvokedUrlCommand *)command{
     [[IterableAPI sharedInstance] spawnInAppNotification:^(NSString *sucess){
