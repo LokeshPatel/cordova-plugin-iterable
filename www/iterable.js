@@ -1,7 +1,7 @@
 var exec = require('cordova/exec');
 
-exports.deviceRegister = function(success, error, emailId, userId) {
-    exec(success, error, "IterablePlugin", "deviceRegister", [emailId,userId]);
+exports.deviceTokenIDRegister = function(success, error,emailId) {
+  exec(success, error, "IterablePlugin", "deviceTokenIDRegister", [emailId]);
 };
 
 exports.loadInAppMessage = function(success, error) {
