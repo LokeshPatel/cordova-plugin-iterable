@@ -1,26 +1,18 @@
 package org.apache.cordova.iterable;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.AssetManager;
-import android.os.Bundle;
 import android.util.Log;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.iterable.iterableapi.IterableApi;
 import com.iterable.iterableapi.IterableConfig;
 import com.iterable.iterableapi.IterableHelper;
@@ -29,12 +21,9 @@ import static org.apache.cordova.Whitelist.TAG;
 
 public class IterablePlugin extends CordovaPlugin {
 
-    private static boolean inBackground = true;
-
     @Override
     protected void pluginInitialize() {
         final Context context = this.cordova.getActivity().getApplicationContext();
-        final Bundle extras = this.cordova.getActivity().getIntent().getExtras();
         this.cordova.getThreadPool().execute(new Runnable() {
             public void run() {
                   Log.d(TAG, "Starting Firebase plugin");
@@ -71,7 +60,10 @@ public class IterablePlugin extends CordovaPlugin {
 
     private void deviceTokenIDRegister(final CallbackContext callbackContext,final String setEmail) {
          IterableApi.getInstance().setEmail(setEmail);
-         IterableApi.getInstance().registerForPush();
+      // IterableApi.getInstance().registerForPush();
+        FirebaseInstanceId instanceID = FirebaseInstanceId.getInstance();
+        IterableApi.getInstance().registerDeviceToken(instanceID.getToken());
+        callbackContext.success(instanceID.getToken());
     }
 
     private void loadInAppMessage(final CallbackContext callbackContext) {
