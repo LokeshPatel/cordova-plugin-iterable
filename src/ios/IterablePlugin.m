@@ -24,13 +24,10 @@ static IterablePlugin *iterablePlugin;
 }
 
 - (void)deviceTokenIDRegister:(CDVInvokedUrlCommand *)command {
-    
+
     NSString* setEmail = [command.arguments objectAtIndex:0];
-    NSString* setUserId = [command.arguments objectAtIndex:1];
-   
-     [[IterableAPI sharedInstance] setUserId:setUserId];
-     [[IterableAPI sharedInstance] setEmail:setEmail];
-  
+    [[IterableAPI sharedInstance] setEmail:setEmail];
+
     NSData *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"iterableDeviceToken"];
     if(deviceToken != nil){
         [[IterableAPI sharedInstance] registerToken:deviceToken onSuccess:^(NSDictionary * _Nonnull data) {
