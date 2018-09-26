@@ -29,11 +29,8 @@
                 NSLog(@"party info: %@", iterableconfig);
                 IterableConfig *config = [[IterableConfig alloc] init];
                 if([iterableconfig valueForKey:@"ios"]){
-                    if([[[iterableconfig valueForKey:@"ios"] valueForKey:@"pushIntegrationName"] isEqualToString:@""]){
-                        config.pushIntegrationName = [[iterableconfig valueForKey:@"ios"] valueForKey:@"pushIntegrationName"];
-                    }else{
-                        config.sandboxPushIntegrationName = [[iterableconfig valueForKey:@"ios"] valueForKey:@"sandboxPushIntegrationName"];
-                    }
+                 config.pushIntegrationName = [[iterableconfig valueForKey:@"ios"] valueForKey:@"pushIntegrationName"];
+                 config.sandboxPushIntegrationName = [[iterableconfig valueForKey:@"ios"] valueForKey:@"sandboxPushIntegrationName"];
                     [IterableAPI initializeWithApiKey:[[iterableconfig valueForKey:@"ios"] valueForKey:@"initializeWithApiKey"] launchOptions:launchOptions config:config];
                 }
             }
